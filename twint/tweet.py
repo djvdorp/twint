@@ -96,7 +96,6 @@ def Tweet(tw, config):
     t.name = tw["user_data"]['name']
     t.place = tw['geo'] if 'geo' in tw and tw['geo'] else ""
     t.timezone = strftime("%z", localtime())
-    t.mentions = _get_mentions(tw)
     t.reply_to = _get_reply_to(tw)
     try:
         t.urls = [_url['expanded_url'] for _url in tw['entities']['urls']]
@@ -153,6 +152,7 @@ def Tweet(tw, config):
     t.translate = ''
     t.trans_src = ''
     t.trans_dest = ''
+    t.mentions = []
     if config.Translate:
         try:
             ts = translator.translate(text=t.tweet, dest=config.TranslateDest)

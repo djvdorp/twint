@@ -252,11 +252,6 @@ def Tweet(Tweet, config):
         j_data["_source"].update({"photos": _photos})
     if Tweet.thumbnail:
         j_data["_source"].update({"thumbnail": Tweet.thumbnail})
-    if Tweet.mentions:
-        _mentions = []
-        for mention in Tweet.mentions:
-            _mentions.append(mention)
-        j_data["_source"].update({"mentions": _mentions})
     if Tweet.urls:
         _urls = []
         for url in Tweet.urls:
